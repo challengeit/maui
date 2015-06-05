@@ -1,7 +1,6 @@
 package com.entopix.maui.main;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -22,7 +21,7 @@ import com.entopix.maui.filters.MauiFilter.MauiFilterException;
 import com.entopix.maui.stemmers.SremovalStemmer;
 import com.entopix.maui.stemmers.Stemmer;
 import com.entopix.maui.stopwords.Stopwords;
-import com.entopix.maui.stopwords.StopwordsFactory;
+import com.entopix.maui.stopwords.StopwordsMap;
 import com.entopix.maui.util.DataLoader;
 import com.entopix.maui.util.Topic;
 import com.entopix.maui.vocab.Vocabulary;
@@ -41,7 +40,7 @@ public final class MauiWrapper {
     // default values of the configuration
     private final Stemmer stemmer = new SremovalStemmer();
     private final String language = "en";
-    private final Stopwords stopwords = StopwordsFactory.makeStopwords(language);
+    private final Stopwords stopwords = StopwordsMap.retrieveStopwords(language);
     
     // these need to be loaded either from a file, or from a pre-loaded object
     private MauiFilter extractionModel = null;

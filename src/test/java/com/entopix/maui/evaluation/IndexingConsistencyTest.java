@@ -14,7 +14,7 @@ import com.entopix.maui.main.MauiTopicExtractor;
 import com.entopix.maui.stemmers.PorterStemmer;
 import com.entopix.maui.stemmers.Stemmer;
 import com.entopix.maui.stopwords.Stopwords;
-import com.entopix.maui.stopwords.StopwordsFactory;
+import com.entopix.maui.stopwords.StopwordsMap;
 import com.entopix.maui.util.DataLoader;
 import com.entopix.maui.util.Evaluator;
 import com.entopix.maui.util.IndexerTopics;
@@ -37,7 +37,7 @@ public class IndexingConsistencyTest {
 		Stemmer stemmer = new PorterStemmer();
 		String language = "en";
 		String encoding = "UTF-8";
-		Stopwords stopwords = StopwordsFactory.makeStopwords(language);
+		Stopwords stopwords = StopwordsMap.retrieveStopwords(language);
 
 		Vocabulary vocabulary  = new Vocabulary();
 		vocabulary.setStemmer(stemmer);

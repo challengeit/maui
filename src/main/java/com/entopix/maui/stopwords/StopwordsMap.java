@@ -9,46 +9,39 @@ import java.util.HashMap;
  **/
 public class StopwordsMap {
 
-	private HashMap<String, Stopwords> _stopwords;
+	private static HashMap<String, Stopwords> stopwords;
 	
-	/**
-	 * Creates an instance of {@link StopwordsMap}.
-	 */
-	public StopwordsMap(){
-		_stopwords = new HashMap<String, Stopwords>();
-	
-		loadStopwords();
-	}
-	
+
 	/**
 	 * Retrieves the stopword according to the language 
 	 * @param language The language to be searched
 	 * @return the stopwords associated with that language
 	 */
-	public Stopwords retrieveStopwords(String language) {
+	public static Stopwords retrieveStopwords(String language) {
 		
-		if(_stopwords.containsKey(language))
-			return _stopwords.get(language);
+		if(stopwords.containsKey(language))
+			return stopwords.get(language);
 		
-		return _stopwords.get("English");
+		return stopwords.get("English");
 	}
 
 	/**
 	 * Loads the stopwords into the HashMap
 	 */
-	private void loadStopwords() {
-		_stopwords.put("English", new StopwordsEnglish());//StopwordsMap.class.getClassLoader().getResourceAsStream("maui/stopwords/stopwords_en.txt")));
-		_stopwords.put("Portuguese", new StopwordsPortuguese());
-		_stopwords.put("Galician", new StopwordsPortuguese());//Stopwords.class.getClassLoader().getResourceAsStream("maui/stopwords/stopwords_pt.txt")));
+	static {
+		stopwords = new HashMap<String, Stopwords>();
+		stopwords.put("English", new StopwordsEnglish());
+		stopwords.put("Portuguese", new StopwordsPortuguese());
+		stopwords.put("Galician", new StopwordsPortuguese());
 	}
 	
 	/**
 	 * Adds stopwords to the HashMap
 	 * @param lang The language of the stopwords
-	 * @param stopwords The set of stopwords
+	 * @param newStopwords The set of stopwords
 	 */
-	public void addStopwords(String lang, Stopwords stopwords){
-		_stopwords.put(lang, stopwords);
+	public static void addStopwords(String lang, Stopwords newStopwords){
+		stopwords.put(lang, newStopwords);
 	}
 
 }
