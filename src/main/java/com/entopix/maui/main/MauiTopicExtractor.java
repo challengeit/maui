@@ -1,5 +1,6 @@
 package com.entopix.maui.main;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -9,6 +10,18 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Vector;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import weka.core.Attribute;
+import weka.core.FastVector;
+import weka.core.Instance;
+import weka.core.Instances;
+import weka.core.Option;
+import weka.core.OptionHandler;
+import weka.core.Utils;
+
 import com.entopix.maui.filters.MauiFilter;
 import com.entopix.maui.filters.MauiFilter.MauiFilterException;
 import com.entopix.maui.stemmers.PorterStemmer;
@@ -23,16 +36,6 @@ import com.entopix.maui.util.Topic;
 import com.entopix.maui.vocab.Vocabulary;
 import com.entopix.maui.vocab.VocabularyStoreFactory;
 import com.entopix.maui.vocab.VocabularyStore_HT;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import weka.core.Attribute;
-import weka.core.FastVector;
-import weka.core.Instance;
-import weka.core.Instances;
-import weka.core.Option;
-import weka.core.OptionHandler;
-import weka.core.Utils;
 
 /**
  * Extracts topics from the documents in a given directory. Assumes that the
@@ -105,7 +108,7 @@ public class MauiTopicExtractor implements OptionHandler {
 	/**
 	 * Name of model
 	 */
-	public String modelName = null;
+	public FileInputStream modelName = null;
 
 	/**
 	 * Vocabulary name
@@ -243,7 +246,7 @@ public class MauiTopicExtractor implements OptionHandler {
 
 		String modelName = Utils.getOption('m', options);
 		if (modelName.length() > 0) {
-			this.modelName = modelName;
+			this.modelName = new FileInputStream(modelName);
 		} else {
 			this.modelName = null;
 			throw new Exception("Path to the model file is a required argument.");

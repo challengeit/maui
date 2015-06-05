@@ -1,7 +1,7 @@
 package com.entopix.maui.stemmers;
 
 
-import java.io.*;
+import java.io.Serializable;
 
 /**
  * Abstract class for stemmers.

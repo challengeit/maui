@@ -1,15 +1,16 @@
 package com.entopix.maui.main;
 
+import java.io.FileInputStream;
 import java.util.List;
+
+import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.entopix.maui.filters.MauiFilter;
 import com.entopix.maui.util.DataLoader;
 import com.entopix.maui.util.MauiDocument;
 import com.entopix.maui.util.MauiTopics;
-
-import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Demonstrates how to use Maui:  <br>
@@ -101,7 +102,7 @@ public class ExampleTest {
 
 		// Settings for topic extractor
 		topicExtractor.inputDirectoryName = testDir;
-		topicExtractor.modelName = modelName;
+		topicExtractor.modelName = new FileInputStream(modelName);
 		topicExtractor.setTopicProbability(0.0);
 		
 		// Run topic extractor
@@ -148,7 +149,7 @@ public class ExampleTest {
 
 		// Settings for topic extractor
 		topicExtractor.inputDirectoryName = testDir;
-		topicExtractor.modelName = modelName;
+		topicExtractor.modelName = new FileInputStream(modelName);
 		topicExtractor.vocabularyName = vocabulary;
 		topicExtractor.vocabularyFormat = format;
 		topicExtractor.setTopicProbability(0.0);

@@ -26,6 +26,18 @@ import java.util.Collections;
 import java.util.Enumeration;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import weka.classifiers.Classifier;
+import weka.core.Attribute;
+import weka.core.FastVector;
+import weka.core.Instance;
+import weka.core.Instances;
+import weka.core.Option;
+import weka.core.OptionHandler;
+import weka.core.Utils;
+
 import com.entopix.maui.filters.MauiFilter;
 import com.entopix.maui.filters.MauiFilter.MauiFilterException;
 import com.entopix.maui.stemmers.PorterStemmer;
@@ -38,18 +50,6 @@ import com.entopix.maui.vocab.Vocabulary;
 import com.entopix.maui.vocab.VocabularyStoreFactory;
 import com.entopix.maui.vocab.VocabularyStore_HT;
 import com.entopix.maui.wikifeatures.WikiFeatures;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import weka.classifiers.Classifier;
-import weka.core.Attribute;
-import weka.core.FastVector;
-import weka.core.Instance;
-import weka.core.Instances;
-import weka.core.Option;
-import weka.core.OptionHandler;
-import weka.core.Utils;
 
 /**
  * Builds a topic indexing model from the documents in a given directory.

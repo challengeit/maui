@@ -1,13 +1,11 @@
 package com.entopix.maui.vocab;
 
+import java.io.Externalizable;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
-
-import java.io.Externalizable;
-import java.io.ObjectOutput;
-import java.io.ObjectInput;
 
 /**
  *

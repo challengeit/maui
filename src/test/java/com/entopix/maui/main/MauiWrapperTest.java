@@ -1,14 +1,15 @@
 package com.entopix.maui.main;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-
-import com.entopix.maui.filters.MauiFilter.MauiFilterException;
-import com.entopix.maui.util.Topic;
 
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.entopix.maui.filters.MauiFilter.MauiFilterException;
+import com.entopix.maui.util.Topic;
 
 /**
  * Demonstrates how to use MauiWrapper,  <br>
@@ -36,7 +37,7 @@ public class MauiWrapperTest {
 			// Use default stemmer, stopwords and language
 			// MauiWrapper also can be initalized with a pre-loaded vocabulary
 			// and a pre-loaded MauiFilter (model) objects
-			mauiWrapper = new MauiWrapper(modelName, vocabularyName, "skos");
+			mauiWrapper = new MauiWrapper(new FileInputStream(modelName), vocabularyName, "skos");
 			
 			// the last three items should match what was used in the wrapper constructor
 			// i.e. null if the defaults were used

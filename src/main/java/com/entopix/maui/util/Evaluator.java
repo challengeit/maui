@@ -4,12 +4,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.entopix.maui.main.MauiTopicExtractor;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import weka.core.Utils;
+
+import com.entopix.maui.main.MauiTopicExtractor;
 
 public class Evaluator {
 

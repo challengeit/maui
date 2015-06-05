@@ -1,7 +1,7 @@
 package com.entopix.maui.util;
 
 
-import java.io.*;
+import java.io.Serializable;
 
 /**
  * Class that implements a simple counter.

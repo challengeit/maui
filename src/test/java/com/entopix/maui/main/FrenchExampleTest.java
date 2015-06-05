@@ -1,13 +1,16 @@
 package com.entopix.maui.main;
 
 
+import java.io.FileInputStream;
+
+import org.junit.Test;
+
 import com.entopix.maui.filters.MauiFilter;
 import com.entopix.maui.stemmers.FrenchStemmer;
 import com.entopix.maui.stemmers.Stemmer;
 import com.entopix.maui.stopwords.Stopwords;
 import com.entopix.maui.stopwords.StopwordsFrench;
 import com.entopix.maui.util.DataLoader;
-import org.junit.Test;
 
 
 public class FrenchExampleTest {
@@ -67,7 +70,7 @@ public class FrenchExampleTest {
 		
 		// Settings for the topic extractor
 		topicExtractor.inputDirectoryName = testDir;
-		topicExtractor.modelName = modelName;
+		topicExtractor.modelName = new FileInputStream(modelName);
 		topicExtractor.vocabularyName = vocabulary;
 		topicExtractor.vocabularyFormat = format;
 		topicExtractor.stemmer = stemmer;

@@ -1,3 +1,5 @@
+## This fork was created because the files' loading was being performed throught the files' path instead of receiving the InputStream object directly into the constructor.
+
 # Maui (GPL)
 
 ###Summary

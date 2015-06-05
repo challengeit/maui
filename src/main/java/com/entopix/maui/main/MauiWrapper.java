@@ -1,12 +1,21 @@
 package com.entopix.maui.main;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 //import org.apache.log4j.BasicConfigurator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import weka.core.Attribute;
+import weka.core.FastVector;
+import weka.core.Instance;
+import weka.core.Instances;
 
 import com.entopix.maui.filters.MauiFilter;
 import com.entopix.maui.filters.MauiFilter.MauiFilterException;
@@ -17,13 +26,6 @@ import com.entopix.maui.stopwords.StopwordsFactory;
 import com.entopix.maui.util.DataLoader;
 import com.entopix.maui.util.Topic;
 import com.entopix.maui.vocab.Vocabulary;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import weka.core.Attribute;
-import weka.core.FastVector;
-import weka.core.Instance;
-import weka.core.Instances;
 
 /**
  * This class shows how to use Maui on a single document or just a string of
@@ -49,7 +51,7 @@ public final class MauiWrapper {
      * Constructor to initialize MauiWrapper with default
      * stemmer, stopwords and language
      */
-    public MauiWrapper(String modelName, String vocabularyName, String vocabularyFormat) { 
+    public MauiWrapper(InputStream modelName, String vocabularyName, String vocabularyFormat) { 
     	this(modelName, vocabularyName, vocabularyFormat, null, null, null);
     }
     
@@ -61,7 +63,7 @@ public final class MauiWrapper {
      * @param stemmer
      * @param language
      */
-    public MauiWrapper(String modelName, String vocabularyName, String vocabularyFormat, Stopwords stopwords, Stemmer stemmer, String language) {
+    public MauiWrapper(InputStream modelName, String vocabularyName, String vocabularyFormat, Stopwords stopwords, Stemmer stemmer, String language) {
     	if (!vocabularyName.equals("none")) {
 	    	this.vocabulary = new Vocabulary();
 	    	if (stemmer != null)
@@ -96,10 +98,6 @@ public final class MauiWrapper {
         this.vocabulary = vocab;                
         this.extractionModel = model;
     }
-    
-    
-
-    
 
     /**
      * Assigns the vocabulary to model

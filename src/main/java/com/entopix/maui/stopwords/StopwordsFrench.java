@@ -1,5 +1,7 @@
 package com.entopix.maui.stopwords;
 
+import java.io.FileInputStream;
+
 /**
  * Class that can test whether a given string is a stop word. Lowercases all
  * words before the test.
@@ -18,13 +20,8 @@ public class StopwordsFrench extends Stopwords {
         super(StopwordsStatic.FRENCH);
     }
 
-    public StopwordsFrench(String filePath) {
-        super(filePath);
+    public StopwordsFrench(FileInputStream input) {
+        super(input);
     }
     
-    @Override
-    public boolean isStopword(String word) {
-        // make sure word is in lowercase
-        return super.isStopword(word.toLowerCase());
-    }
 }

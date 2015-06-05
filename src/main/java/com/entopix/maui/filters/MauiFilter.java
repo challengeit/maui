@@ -18,13 +18,27 @@ package com.entopix.maui.filters;
  *    along with this program; if not, write to the Free Software
  *    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  */
-import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.StringTokenizer;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import weka.classifiers.Classifier;
+import weka.classifiers.meta.Bagging;
+import weka.core.Attribute;
+import weka.core.Capabilities;
+import weka.core.Capabilities.Capability;
+import weka.core.FastVector;
+import weka.core.Instance;
+import weka.core.Instances;
+import weka.core.Utils;
+import weka.filters.Filter;
 
 import com.entopix.maui.stemmers.PorterStemmer;
 import com.entopix.maui.stemmers.Stemmer;
@@ -34,20 +48,6 @@ import com.entopix.maui.util.Candidate;
 import com.entopix.maui.util.Counter;
 import com.entopix.maui.vocab.Vocabulary;
 import com.entopix.maui.wikifeatures.WikiFeatures;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import weka.core.Attribute;
-import weka.core.Capabilities;
-import weka.core.FastVector;
-import weka.core.Instance;
-import weka.core.Instances;
-import weka.core.Utils;
-import weka.core.Capabilities.Capability;
-import weka.filters.Filter;
-import weka.classifiers.Classifier;
-import weka.classifiers.meta.Bagging;
 
 /**
  * This filter converts the incoming data into data appropriate for keyphrase

@@ -2,17 +2,18 @@ package com.entopix.maui.util;
 
 import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.entopix.maui.filters.MauiFilter;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.entopix.maui.filters.MauiFilter;
 
 public class DataLoader {
 
@@ -25,28 +26,27 @@ public class DataLoader {
      * @return
      * @throws ClassNotFoundException 
      */
-    public static MauiFilter loadModel(String modelPath) {
+    public static MauiFilter loadModel(InputStream input) {
 		BufferedInputStream inStream = null;
 		MauiFilter model = null;
 		try {
-			inStream = new BufferedInputStream(
-					new FileInputStream(modelPath));
+			inStream = new BufferedInputStream(input);
 			ObjectInputStream in = new ObjectInputStream(inStream);
 			model = (MauiFilter) in.readObject();
 			in.close();
 			inStream.close();
 			
 		} catch (IOException e) {
-			log.error("Error while loading extraction model from " + modelPath + "!\n", e);
+			log.error("Error while loading extraction model!\n", e);
 			throw new RuntimeException();
 		} catch (ClassNotFoundException e) {
-			log.error("Mismatch of the class in " + modelPath + "!\n", e);
+			log.error("Mismatch of the class in the model!\n", e);
 			throw new RuntimeException();
 		} finally {
 			try {
 				inStream.close();
 			} catch (IOException e1) {
-				log.error("Error while loading extraction model from " + modelPath + "!\n", e1);
+				log.error("Error while loading extraction model!\n", e1);
 				throw new RuntimeException();
 			}
 		}
